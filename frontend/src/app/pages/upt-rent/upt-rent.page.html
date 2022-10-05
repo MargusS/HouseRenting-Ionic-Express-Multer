@@ -1,0 +1,43 @@
+<app-header title="Update"></app-header>
+<ion-content class="ion-padding">
+  <ion-card class="ion-padding card-form">
+    <ion-card-header>
+      <ion-card-title>Update info</ion-card-title>
+    </ion-card-header>
+    <ion-list *ngIf="house">
+      <form (ngSubmit)="onUpdate()" novalidate #add="ngForm">
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">Title</ion-label>
+          <ion-input type="text" placeholder="New House" name="title" [(ngModel)]="house.title" required></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">Location</ion-label>
+          <ion-input type="text" placeholder="House address" name="location" [(ngModel)]="house.location" required>
+          </ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">Price €</ion-label>
+          <ion-input type="number" placeholder="100" name="price" [(ngModel)]="house.price" required></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">Description</ion-label>
+          <ion-input type="text" placeholder="House description" name="description" [(ngModel)]="house.description"
+            required>
+          </ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">WC</ion-label>
+          <ion-input type="number" placeholder="0 - 10" name="wc" [(ngModel)]="house.wc" required></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-vertical">
+          <ion-label position="stacked">Rooms</ion-label>
+          <ion-input type="number" placeholder="0 - 10" name="rooms" [(ngModel)]="house.rooms" required></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full" class="ion-margin-top" [disabled]="!add.valid">
+          <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
+          <ion-label>Update rent</ion-label>
+        </ion-button>
+      </form>
+    </ion-list>
+  </ion-card>
+</ion-content>

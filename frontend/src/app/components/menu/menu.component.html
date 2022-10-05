@@ -1,0 +1,30 @@
+<ion-menu menuId="first" content-id="main" side="end" swipeGesture="false">
+  <ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="cyan">
+      <ion-title>Menu Content</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-toggle>
+          <ion-button fill="solid" color="danger">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item (click)="goToHome()">
+          <ion-icon name="home-outline" slot="end"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item (click)="goToAdmin()">
+          <ion-icon name="settings-outline" slot="end"></ion-icon>
+          <ion-label>Admin</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
