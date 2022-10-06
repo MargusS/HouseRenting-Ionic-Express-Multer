@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     })
 }
 
-exports.finfAll = (req, res) => {
+exports.findAll = (req, res) => {
   House.finfAll()
     .then(data => {
       res.send(data);
