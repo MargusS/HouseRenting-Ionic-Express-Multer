@@ -3,11 +3,11 @@ module.exports = app => {
 
   let router = require('express').Router();
 
-  router.post("/lista", house.create);
-  router.get("/", house.findAll);
+  router.post("/create", house.create);
+  router.get("/lista", house.findAll);
   router.get("/:id", house.findOne);
-  router.put("/:id", house.update);
-  router.delete("/:id", house.delete);
+  router.put("/update/:id", house.update);
+  router.delete("/delete/:id", house.delete);
 
   app.use('/house', router);
 }
