@@ -19,5 +19,9 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.house_renting = require("./house.model.js")(sequelize, Sequelize);
+db.images = require("./image.model.js")(sequelize, Sequelize);
+
+db.house_renting.hasMany(db.images, { as: "images" });
+db.images.belongsTo(db.house_renting)
 
 module.exports = db
