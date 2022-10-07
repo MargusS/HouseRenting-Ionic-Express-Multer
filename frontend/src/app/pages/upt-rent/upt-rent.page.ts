@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { House } from 'src/app/models/house';
+import { HouseService } from 'src/app/service/house.service';
 import { AdminPage } from '../admin/admin.page';
-// import { House } from '../models/house';
-// import { HouseService } from '../service/house.service';
 
 @Component({
   selector: 'app-upt-rent',
@@ -12,36 +12,36 @@ import { AdminPage } from '../admin/admin.page';
 })
 export class UptRentPage implements OnInit {
 
-  // house: House = null;
+  house: House = null;
   toastColor:string;
 
-  constructor(private activatedRoute:ActivatedRoute,private router: Router,private toastController: ToastController) { }
+  constructor(private activatedRoute:ActivatedRoute,private router: Router,private toastController: ToastController, private houseService: HouseService) { }
 
   ngOnInit() {
-    // const id = this.activatedRoute.snapshot.params.id;
-    // this.houseService.getDetail(id).subscribe(
-    //   data=>{
-    //     this.house = data;
-    //   },
-    //   err=>{
-    //     alert("Error");
-    //   }
-    // )
+    const id = this.activatedRoute.snapshot.params.id;
+    this.houseService.getDetail(id).subscribe(
+      data=>{
+        this.house = data;
+      },
+      err=>{
+        alert("Error");
+      }
+    )
   }
 
   onUpdate():void{
-    // const id = this.activatedRoute.snapshot.params.id;
-    // this.houseService.putUpdate(id,this.house).subscribe(
-    //   data=>{
-    //     this.toastColor = 'success'
-    //     this.presentToast(data.message);
-    //     this.router.navigate(['/admin']);
-    //   },
-    //   err=>{
-    //     this.toastColor = 'danger'
-    //     this.presentToast(err.error.message);
-    //   }
-    // )
+    const id = this.activatedRoute.snapshot.params.id;
+    this.houseService.putUpdate(id,this.house).subscribe(
+      data=>{
+        this.toastColor = 'success'
+        this.presentToast(data.message);
+        this.router.navigate(['/admin']);
+      },
+      err=>{
+        this.toastColor = 'danger'
+        this.presentToast(err.error.message);
+      }
+    )
   }
   async presentToast(msj: string) {
     const toast = await this.toastController.create({

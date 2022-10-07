@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HouseService } from 'src/app/service/house.service';
 // import { HouseService } from '../service/house.service';
 
 @Component({
@@ -10,23 +11,23 @@ import { Router } from '@angular/router';
 export class HousesListPage implements OnInit {
 
   houses: any = [];
-  constructor(private router: Router) { }
+  constructor(private router: Router, private houseService: HouseService) { }
 
   ngOnInit() {
-    // this.getAllHouses();
+    this.getAllHouses();
   }
 
   ionViewWillEnter() {
-    // this.getAllHouses();
+    this.getAllHouses();
   }
 
-  // getAllHouses() {
-  //   this.houseService.getHouses().subscribe(response => {
-  //     this.houses = response;
-  //   },
-  //   err =>{
-  //     this.router.navigate(['/']);
-  //   })
-  // }
+  getAllHouses() {
+    this.houseService.getHouses().subscribe(response => {
+      this.houses = response;
+    },
+    err =>{
+      this.router.navigate(['/']);
+    })
+  }
 
 }

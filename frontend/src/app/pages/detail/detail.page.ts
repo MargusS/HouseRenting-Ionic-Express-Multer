@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { House } from 'src/app/models/house';
+import { HouseService } from 'src/app/service/house.service';
 // import { House } from '../models/house';
 // import { HouseService } from '../service/house.service';
 
@@ -10,19 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailPage implements OnInit {
 
-  // house: House = null;
-  constructor(private activatedRoute:ActivatedRoute,private router: Router) { }
+  house: House = null;
+  constructor(private activatedRoute:ActivatedRoute,private router: Router,private houseService: HouseService) { }
 
   ngOnInit() {
-    // const id = this.activatedRoute.snapshot.params.id;
-    // this.houseService.getDetail(id).subscribe(
-    //   data=>{
-    //     this.house = data;
-    //   },
-    //   err=>{
-    //     alert("Error");
-    //   }
-    // )
+    const id = this.activatedRoute.snapshot.params.id;
+    this.houseService.getDetail(id).subscribe(
+      data=>{
+        this.house = data;
+      },
+      err=>{
+        alert("Error");
+      }
+    )
   }
 
 }

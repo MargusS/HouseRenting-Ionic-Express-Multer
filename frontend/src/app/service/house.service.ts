@@ -16,7 +16,7 @@ export class HouseService {
     return this.httpClient.get<House[]>(this.path + 'lista');
   }
   getDetail(id: number): Observable<House> {
-    return this.httpClient.get<House>(this.path + `detail/${id}`);
+    return this.httpClient.get<House>(this.path + `/${id}`);
   }
 
   postCreate(house: House): Observable<any> {
