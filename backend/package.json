@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,6 @@
     "sequelize": "6.24.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.20"
+    "nodemon": "^2.0.20"
   }
 }

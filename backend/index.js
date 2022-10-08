@@ -19,14 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 const db = require('./models');
 
 db.sequelize.sync().then(() => {
-  console.log("Drop and re-sync db.");
+  console.log("re-sync db.");
 })
 
-// app.get("/", (req, res) => {
-//   res.json({ message: "Hello Express" });
-// })
-
 require('./routes/house.routes')(app);
+require('./routes/images.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
