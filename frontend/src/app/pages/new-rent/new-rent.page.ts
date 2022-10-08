@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { House } from 'src/app/models/house';
 import { HouseService } from 'src/app/service/house.service';
+import { Camera, CameraResultType, CameraSource, GalleryPhoto, Photo } from '@capacitor/camera';
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade } from 'swiper';
+import { IonicSlides } from '@ionic/angular';
+
+SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, IonicSlides,EffectFade]);
 
 @Component({
   selector: 'app-new-rent',
@@ -19,7 +24,8 @@ export class NewRentPage implements OnInit {
   rooms: number = null; 
 
   toastColor:string;
-
+  images: any[] = [];
+  imagesLength:number = 0;
   constructor(private router: Router,private toastController: ToastController,private houseService: HouseService) { }
 
   ngOnInit() {
@@ -38,6 +44,35 @@ export class NewRentPage implements OnInit {
         this.presentToast(err.error.message);
       }
     )
+  }
+  
+  public async pickImage(){
+    // Take a photo
+    const capturedPhotos = await Camera.pickImages({
+      limit: 5,
+      quality: 100
+    });
+    for(let img of capturedPhotos.photos){
+      this.images = this.images.concat(img.webPath);
+    }
+    this.imagesLength = this.images.length;
+  }
+
+  public async takePhoto() {
+    // Take a photo
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100
+    });
+    console.log(capturedPhoto);
+    return capturedPhoto;
+  }
+
+  discardImage(image){
+    const filter = this.images.filter(item=> item != image);
+    this.images = filter;
+    this.imagesLength = this.images.length;
   }
 
   async presentToast(msj: string) {

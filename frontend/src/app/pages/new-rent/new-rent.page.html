@@ -1,43 +1,99 @@
 <app-header title="New"></app-header>
-<ion-content class="ion-padding">
-  <ion-card class="ion-padding">
+<ion-content>
+  <ion-card>
     <ion-card-header>
       <ion-card-title>Complete the Form</ion-card-title>
     </ion-card-header>
-    <ion-list>
-      <form (ngSubmit)="onCreate()" novalidate #add="ngForm">
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">Title</ion-label>
-          <ion-input type="text" placeholder="New House" name="title" [(ngModel)]="title" required></ion-input>
-        </ion-item>
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">Location</ion-label>
-          <ion-input type="text" placeholder="House address" name="location" [(ngModel)]="location" required>
-          </ion-input>
-        </ion-item>
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">Price €</ion-label>
-          <ion-input type="number" placeholder="100" name="price" [(ngModel)]="price" required></ion-input>
-        </ion-item>
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">Description</ion-label>
-          <ion-input type="text" placeholder="House description" name="description" [(ngModel)]="description" required>
-          </ion-input>
-        </ion-item>
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">WC</ion-label>
-          <ion-input type="number" placeholder="0 - 10" name="wc" [(ngModel)]="wc" required></ion-input>
-        </ion-item>
-        <ion-item class="ion-margin-vertical">
-          <ion-label position="stacked">Rooms</ion-label>
-          <ion-input type="number" placeholder="0 - 10" name="rooms" [(ngModel)]="rooms" required></ion-input>
-        </ion-item>
-        <ion-button type="submit" expand="full" class="ion-margin-top" [disabled]="!add.valid">
-          <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
-          <ion-label>Add new rent</ion-label>
-        </ion-button>
-      </form>
-    </ion-list>
+    <ion-card class="card-image">
+      <ion-text>
+      </ion-text>
+      <!-- <ion-button size="large" shape="round" type="submit" class="ion-margin-top">
+          <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+        </ion-button> -->
+      <div class="test" *ngIf="imagesLength == 0">
+        <h6>Add Pictures</h6>
+        <ion-fab vertical="center" horizontal="center" slot="fixed">
+          <ion-fab-button>
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="start">
+            <ion-fab-button color="warning">
+              <ion-icon name="camera-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+          <ion-fab-list side="end">
+            <ion-fab-button color="warning" (click)="pickImage()">
+              <ion-icon name="folder-open-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+      <div class="img-container" *ngIf="imagesLength !== 0">
+        <swiper class="swp-img" [autoplay]="true" [slidesPerView]="1" [loop]="true" [scrollbar]="true" effect="fade"
+          [pagination]="true" [zoom]="true">
+          <ng-template swiperSlide *ngFor="let image of images">
+            <ion-img class="img-thumb" src="{{image}}"></ion-img>
+            <ion-button shape="round" color="danger" class="dlt-img" (click)="discardImage(image)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </swiper>
+        <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+          <ion-fab-button>
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="start">
+            <ion-fab-button color="warning" (click)="takePhoto()">
+              <ion-icon name="camera-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+          <ion-fab-list side="end">
+            <ion-fab-button color="warning" (click)="pickImage()">
+              <ion-icon name="folder-open-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+
+    </ion-card>
+    <ion-card-content>
+      <ion-list>
+        <form (ngSubmit)="onCreate()" novalidate #add="ngForm">
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">Title</ion-label>
+            <ion-input type="text" placeholder="New House" name="title" [(ngModel)]="title" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">Location</ion-label>
+            <ion-input type="text" placeholder="House address" name="location" [(ngModel)]="location" required>
+            </ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">Price €</ion-label>
+            <ion-input type="number" placeholder="100" name="price" [(ngModel)]="price" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">Description</ion-label>
+            <ion-input type="text" placeholder="House description" name="description" [(ngModel)]="description"
+              required>
+            </ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">WC</ion-label>
+            <ion-input type="number" placeholder="0 - 10" name="wc" [(ngModel)]="wc" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-vertical">
+            <ion-label position="stacked">Rooms</ion-label>
+            <ion-input type="number" placeholder="0 - 10" name="rooms" [(ngModel)]="rooms" required></ion-input>
+          </ion-item>
+          <ion-button type="submit" expand="full" class="ion-margin-top" [disabled]="!add.valid">
+            <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
+            <ion-label>Add new rent</ion-label>
+          </ion-button>
+        </form>
+      </ion-list>
+    </ion-card-content>
+
   </ion-card>
 
 </ion-content>

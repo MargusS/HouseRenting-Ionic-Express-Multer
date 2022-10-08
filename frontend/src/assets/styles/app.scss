@@ -1,0 +1,39 @@
+.card-image {
+  height: 17em;
+}
+
+.test {
+  // z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+
+  h6 {
+    margin-top: -5.5em;
+  }
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .img-thumb {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+swp-img {
+  width: 100%;
+}
+
+.dlt-img {
+  position: absolute;
+  top: 3%;
+  margin: 0 auto;
+}

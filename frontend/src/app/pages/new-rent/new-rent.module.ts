@@ -8,6 +8,7 @@ import { NewRentPageRoutingModule } from './new-rent-routing.module';
 
 import { NewRentPage } from './new-rent.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     NewRentPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ],
   declarations: [NewRentPage]
 })
