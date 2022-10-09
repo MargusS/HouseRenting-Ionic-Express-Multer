@@ -100,35 +100,10 @@ exports.update = (req, res) => {
       message: "Content cannot be empty"
     })
   }
+  console.log(req.body.title)
   const title = req.body.title;
 
-  const arrImgs = [];
-
   const id = req.params.id;
-
-  House.findOne({ where: { id } })
-    .then(data => {
-      for (let i of req.files) {
-        const image = {
-          imgfile: i.filename,
-          createAt: new Date(),
-          updateAt: new Date(),
-          houseId: data.id
-        }
-        arrImgs.push(image)
-      }
-      let arrCreateImgs = arrImgs.map(function (image) {
-        return Image.create(image)
-      })
-      Promise.all(arrCreateImgs)
-        .catch(err => {
-          res.status(500).send({
-            message: err.message || "Some error ocurred while creating images"
-          })
-          return
-        })
-    })
-
   House.update({
     title: req.body.title,
     description: req.body.description,

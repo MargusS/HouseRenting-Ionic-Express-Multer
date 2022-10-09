@@ -6,6 +6,34 @@ const fs = require('fs');
 
 const path = 'public/images/'
 
+exports.create = (req, res) => {
+  const houseId = req.params.id;
+  const arrImgs = [];
+  for (let i of req.files) {
+    const image = {
+      imgfile: i.filename,
+      createAt: new Date(),
+      ipdateAt: new Date(),
+      houseId: houseId
+    }
+    arrImgs.push(image)
+  }
+  let arrCreateImgs = arrImgs.map(function (image) {
+    return Image.create(image)
+  })
+  Promise.all(arrCreateImgs)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error ocurred while creating images"
+      })
+      return
+    })
+}
+
+
 exports.findAll = (req, res) => {
   const houseId = req.params.id;
   Image.findAll({ where: { houseId } })
@@ -14,7 +42,7 @@ exports.findAll = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || "Some error ocurred while creating the house"
+        message: err.message || "Not Found"
       })
     })
 }
@@ -28,7 +56,7 @@ exports.findOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || "Some error ocurred while creating the house"
+        message: err.message || "Not Found"
       })
     })
 }
