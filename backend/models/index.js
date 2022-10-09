@@ -21,7 +21,7 @@ db.sequelize = sequelize;
 db.house_renting = require("./house.model.js")(sequelize, Sequelize);
 db.images = require("./image.model.js")(sequelize, Sequelize);
 
-db.house_renting.hasMany(db.images, { as: "images" });
+db.house_renting.hasMany(db.images, { foreignKey: 'houseId', onDelete: 'CASCADE', hooks: true });
 db.images.belongsTo(db.house_renting)
 
 module.exports = db
