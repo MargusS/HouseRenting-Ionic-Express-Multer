@@ -19,8 +19,18 @@ export class HouseService {
     return this.httpClient.get<House>(this.path + `/${id}`);
   }
 
-  postCreate(house: House): Observable<any> {
-    return this.httpClient.post<any>(this.path + `create`, house);
+  postCreate(house: House, blob): Observable<any> {
+    let formData = new FormData();
+    formData.append("title", house.title);
+    formData.append("description", house.description);
+    formData.append("price", house.price);
+    formData.append("location", house.location);
+    formData.append("rooms", house.rooms);
+    formData.append("wc", house.wc);
+    for(let i of blob){
+      formData.append("images", i);
+    }
+    return this.httpClient.post(this.path + 'create', formData);
   }
 
   putUpdate(id: number, house: House): Observable<any> {

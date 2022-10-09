@@ -7,9 +7,6 @@
     <ion-card class="card-image">
       <ion-text>
       </ion-text>
-      <!-- <ion-button size="large" shape="round" type="submit" class="ion-margin-top">
-          <ion-icon name="add-outline" slot="icon-only"></ion-icon>
-        </ion-button> -->
       <div class="test" *ngIf="imagesLength == 0">
         <h6>Add Pictures</h6>
         <ion-fab vertical="center" horizontal="center" slot="fixed">
@@ -29,8 +26,7 @@
         </ion-fab>
       </div>
       <div class="img-container" *ngIf="imagesLength !== 0">
-        <swiper class="swp-img" [autoplay]="true" [slidesPerView]="1" [loop]="true" [scrollbar]="true" effect="fade"
-          [pagination]="true" [zoom]="true">
+        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" effect="fade" [zoom]="true">
           <ng-template swiperSlide *ngFor="let image of images">
             <ion-img class="img-thumb" src="{{image}}"></ion-img>
             <ion-button shape="round" color="danger" class="dlt-img" (click)="discardImage(image)">
@@ -54,7 +50,6 @@
           </ion-fab-list>
         </ion-fab>
       </div>
-
     </ion-card>
     <ion-card-content>
       <ion-list>

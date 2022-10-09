@@ -2,12 +2,12 @@ export class House {
     id?: number;
     title: string;
     location: string;
-    price: number;
+    price: string;
     description: string;
-    wc: number;
-    rooms: number;
+    wc: string;
+    rooms: string;
 
-    constructor(title: string, location: string, price: number, description: string, wc: number, rooms: number) {
+    constructor(title: string, location: string, price: string, description: string, wc: string, rooms: string) {
         this.title = title;
         this.location = location;
         this.price = price;

@@ -1,9 +1,90 @@
 <app-header title="Update"></app-header>
-<ion-content class="ion-padding">
-  <ion-card class="ion-padding card-form">
+<ion-content>
+  <ion-card>
     <ion-card-header>
       <ion-card-title>Update info</ion-card-title>
     </ion-card-header>
+    <ion-card class="card-image">
+      <ion-text>
+      </ion-text>
+      <div class="test" *ngIf="imagesLength == 1">
+        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" effect="fade" [zoom]="true">
+          <ng-template swiperSlide *ngFor="let image of images">
+            <ion-fab vertical="top" horizontal="start" slot="fixed">
+              <ion-fab-button color="success">
+                <ion-icon name="repeat-outline"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-list side="end">
+                <ion-fab-button color="warning" (click)="takePhoto(0)">
+                  <ion-icon name="camera-outline"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+              <ion-fab-list side="bottom">
+                <ion-fab-button color="warning" (click)="pickImage(0)">
+                  <ion-icon name="folder-open-outline"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+            </ion-fab>
+            <ion-img class="img-thumb" src="http://localhost:8080/images/{{image.imgfile}}"></ion-img>
+          </ng-template>
+        </swiper>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button color="light">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="start">
+            <ion-fab-button color="warning" (click)="takePhoto(1,-1)">
+              <ion-icon name="camera-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+          <ion-fab-list side="top">
+            <ion-fab-button color="warning" (click)="pickImage(1,-1)">
+              <ion-icon name="folder-open-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+      <div class="img-container" *ngIf="imagesLength !== 1">
+        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" effect="fade" [zoom]="true">
+          <ng-template swiperSlide *ngFor="let image of images">
+            <ion-fab vertical="top" horizontal="start" slot="fixed">
+              <ion-fab-button color="success">
+                <ion-icon name="repeat-outline"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-list side="end">
+                <ion-fab-button color="warning" (click)="takePhoto(0,image.id)">
+                  <ion-icon name="camera-outline"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+              <ion-fab-list side="bottom">
+                <ion-fab-button color="warning" (click)="pickImage(0,image.id)">
+                  <ion-icon name="folder-open-outline"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+            </ion-fab>
+            <ion-img class="img-thumb" src="http://localhost:8080/images/{{image.imgfile}}"></ion-img>
+            <ion-button shape="round" color="danger" class="dlt-img-upt" (click)="discardImage(image.id)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </swiper>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button color="light">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="start">
+            <ion-fab-button color="warning" (click)="takePhoto(1,-1)">
+              <ion-icon name="camera-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+          <ion-fab-list side="top">
+            <ion-fab-button color="warning" (click)="pickImage(1,-1)">
+              <ion-icon name="folder-open-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+    </ion-card>
     <ion-list *ngIf="house">
       <form (ngSubmit)="onUpdate()" novalidate #add="ngForm">
         <ion-item class="ion-margin-vertical">

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { h } from 'ionicons/dist/types/stencil-public-runtime';
 import { HouseService } from 'src/app/service/house.service';
+import { ImagesService } from 'src/app/service/images.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,10 +11,12 @@ import { HouseService } from 'src/app/service/house.service';
   styleUrls: ['./admin.page.scss'],
 })
 export class AdminPage implements OnInit {
+
   houses: any = [];
+  image:string;
   toastColor:string;
 
-  constructor(private router: Router,private toastController: ToastController, private houseService: HouseService) { }
+  constructor(private router: Router,private toastController: ToastController, private houseService: HouseService, private imagesService: ImagesService) { }
 
   ngOnInit() {
     this.getAllHouses();
@@ -25,6 +29,12 @@ export class AdminPage implements OnInit {
   getAllHouses(): void {
     this.houseService.getHouses().subscribe(response => {
       this.houses = response;
+      this.houses.map(h => this.imagesService.getMainImage(h.id).subscribe(
+        response => {
+          h.image = response;
+          h.image = h.image.imgfile;
+        }
+      ));
     })
   }
 
@@ -46,6 +56,15 @@ export class AdminPage implements OnInit {
       }
     )
   }
+
+  // mainImage(id){
+  //   console.log("hjasgiaa")
+  //   this.imagesService.getMainImage(id).subscribe(
+  //     response => {
+  //       console.log(response);
+  //     }
+  //   )
+  // }
 
   async presentToast(msj: string) {
     const toast = await this.toastController.create({

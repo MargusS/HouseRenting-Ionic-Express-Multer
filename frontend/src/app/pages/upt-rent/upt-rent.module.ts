@@ -8,6 +8,7 @@ import { UptRentPageRoutingModule } from './upt-rent-routing.module';
 
 import { UptRentPage } from './upt-rent.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     UptRentPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ],
   declarations: [UptRentPage]
 })

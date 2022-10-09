@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HouseService } from 'src/app/service/house.service';
+import { ImagesService } from 'src/app/service/images.service';
 // import { HouseService } from '../service/house.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { HouseService } from 'src/app/service/house.service';
 export class HousesListPage implements OnInit {
 
   houses: any = [];
-  constructor(private router: Router, private houseService: HouseService) { }
+  constructor(private router: Router, private houseService: HouseService, private imagesService : ImagesService) { }
 
   ngOnInit() {
     this.getAllHouses();
@@ -24,10 +25,12 @@ export class HousesListPage implements OnInit {
   getAllHouses() {
     this.houseService.getHouses().subscribe(response => {
       this.houses = response;
-    },
-    err =>{
-      this.router.navigate(['/']);
+      this.houses.map(h => this.imagesService.getMainImage(h.id).subscribe(
+        response => {
+          h.image = response;
+          h.image = h.image.imgfile;
+        }
+      ));
     })
   }
-
 }

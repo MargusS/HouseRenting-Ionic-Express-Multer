@@ -18,10 +18,10 @@ export class NewRentPage implements OnInit {
 
   title: string = '';
   location: string = '';
-  price: number = null;
+  price: string = '';
   description: string = '';
-  wc: number = null;
-  rooms: number = null; 
+  wc: string = '';
+  rooms: string = ''; 
 
   toastColor:string;
   images: any[] = [];
@@ -31,9 +31,15 @@ export class NewRentPage implements OnInit {
   ngOnInit() {
   }
 
-  onCreate(): void{
+  async onCreate(){
     const house = new House(this.title,this.location,this.price,this.description,this.wc,this.rooms);
-    this.houseService.postCreate(house).subscribe(
+    let blob = [];
+    for (let i of this.images){
+      const response = await fetch(i);
+      blob.push(await response.blob());
+    }
+    // console.log(blob[0]);
+    this.houseService.postCreate(house,blob).subscribe(
       data => {
         this.toastColor = 'success'
         this.presentToast(data.message);

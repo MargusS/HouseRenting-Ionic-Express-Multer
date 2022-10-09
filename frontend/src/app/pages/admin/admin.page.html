@@ -16,6 +16,7 @@
   <ion-row *ngFor="let h of houses">
     <ion-col sizeMd="6" sizeXs="12">
       <ion-card>
+        <img *ngIf="h.image" src="http://localhost:8080/images/{{h.image}}" alt="image">
         <ion-card-header>
           <ion-card-subtitle>{{h.location}}</ion-card-subtitle>
           <ion-card-title>{{h.title}}</ion-card-title>

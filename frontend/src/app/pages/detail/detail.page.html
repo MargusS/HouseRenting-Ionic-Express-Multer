@@ -1,10 +1,18 @@
 <app-header title="Detail"></app-header>
-<ion-content class="ion-padding">
+<ion-content>
   <ion-card class="ion-padding" *ngIf="house">
     <ion-card-header>
       <ion-card-subtitle>{{house.location}}</ion-card-subtitle>
       <ion-card-title>{{house.title}}</ion-card-title>
     </ion-card-header>
+    <div class="img-container">
+      <swiper class="swp-img" [autoplay]="true" [slidesPerView]="1" [loop]="true" [scrollbar]="true" effect="fade"
+        [pagination]="true" [zoom]="true">
+        <ng-template swiperSlide *ngFor="let image of images">
+          <ion-img class="img-thumb" src="http://localhost:8080/images/{{image.imgfile}}"></ion-img>
+        </ng-template>
+      </swiper>
+    </div>
     <ion-text color="blue">
       <h3 class="ion-margin-end ion-text-end">{{house.price}}€</h3>
     </ion-text>
