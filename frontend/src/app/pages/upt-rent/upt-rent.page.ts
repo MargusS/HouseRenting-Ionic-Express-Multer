@@ -113,17 +113,6 @@ export class UptRentPage implements OnInit {
     }
   }
 
-  public async takePhoto() {
-    // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
-    });
-    console.log(capturedPhoto);
-    return capturedPhoto;
-  }
-
    async createImage(){
     let blob = [];
     for (let i of this.newImages){
@@ -132,7 +121,7 @@ export class UptRentPage implements OnInit {
     }
     this.imagesService.postCreateImage(this.id,blob).subscribe(
       data=>{
-        this.toastColor = 'dark'
+        this.toastColor = 'success'
         this.presentToast(data.message);
         this.getGallery();
       },

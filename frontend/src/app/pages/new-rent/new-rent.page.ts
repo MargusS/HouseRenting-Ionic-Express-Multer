@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { House } from 'src/app/models/house';
 import { HouseService } from 'src/app/service/house.service';
-import { Camera, CameraResultType, CameraSource, GalleryPhoto, Photo } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
+import { FormsModule } from '@angular/forms';
 import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade } from 'swiper';
 import { IonicSlides } from '@ionic/angular';
 
