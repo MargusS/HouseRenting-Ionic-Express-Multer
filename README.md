@@ -3,6 +3,8 @@
 This is a project to practise a CRUD one-to-many in Sequelize. 
 Try it now and create your own houses to rent with spectacular images.
 
+Link with test images folder : https://drive.google.com/drive/folders/1z0i9eQvbnhFzGNqmHhtsNcanY9v7zHSc?usp=sharing
+
 ## General Installation instructions
 
 1. - Clone the repository 
