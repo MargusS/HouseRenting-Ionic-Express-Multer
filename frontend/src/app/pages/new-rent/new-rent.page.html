@@ -26,7 +26,7 @@
         </ion-fab>
       </div>
       <div class="img-container" *ngIf="imagesLength !== 0">
-        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" effect="fade" [zoom]="true">
+        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" [zoom]="true">
           <ng-template swiperSlide *ngFor="let image of images">
             <ion-img class="img-thumb" src="{{image}}"></ion-img>
             <ion-button shape="round" color="danger" class="dlt-img" (click)="discardImage(image)">

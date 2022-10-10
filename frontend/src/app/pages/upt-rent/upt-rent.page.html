@@ -45,7 +45,7 @@
         </ion-fab>
       </div>
       <div class="img-container" *ngIf="imagesLength !== 1">
-        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" effect="fade" [zoom]="true">
+        <swiper class="swp-img" [slidesPerView]="1" [scrollbar]="true" [zoom]="true">
           <ng-template swiperSlide *ngFor="let image of images">
             <ion-fab vertical="top" horizontal="start" slot="fixed">
               <ion-fab-button color="success">
