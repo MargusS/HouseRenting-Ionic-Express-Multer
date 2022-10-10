@@ -22,6 +22,7 @@ git clone https://github.com/MargusS/HouseRenting.git
 3. - Open an integraded terminal and execute: 
 
 ```
+
 $ cd backend
 $ npm install
 
@@ -32,14 +33,16 @@ $ npm install
 
 4. - While libraries are dowloading, import - *db.example.sql* - in your your Database Management Software (MySQL Workbench recommended)
 
-5. - In your integrated backend terminal execute:
+5. - Create folder - *public/images* - inside backend
+
+6. - In your integrated backend terminal execute:
 
 ```
 npm run nodemon
 
 ```
 
-6. - In you frontend integrated terminal execute:
+7. - In you frontend integrated terminal execute:
 
 ```
 ionic serve
