@@ -23,7 +23,9 @@ exports.create = (req, res) => {
   })
   Promise.all(arrCreateImgs)
     .then(data => {
-      res.send(data);
+      res.status(200).send({
+        message: "Image Created!"
+      })
     })
     .catch(err => {
       res.status(500).send({

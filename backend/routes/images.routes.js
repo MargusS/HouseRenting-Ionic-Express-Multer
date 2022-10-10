@@ -4,7 +4,7 @@ module.exports = app => {
 
     let router = require('express').Router();
 
-    router.post("/create/:id", upload.array("images", 6), image.create);
+    router.post("/create/:id", upload.array("images", 3), image.create);
     router.get("/lista/:id", image.findAll);
     router.get("/:id", image.findOne);
     router.put("/update/:id", upload.single("image"), image.update);

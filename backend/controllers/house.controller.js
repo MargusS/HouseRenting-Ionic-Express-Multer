@@ -55,7 +55,9 @@ exports.create = (req, res) => {
               })
               return
             })
-          res.send(data);
+          res.status(200).send({
+            message: "House Created!"
+          })
         })
         .catch(err => {
           res.status(500).send({
@@ -114,7 +116,9 @@ exports.update = (req, res) => {
     updateAt: new Date()
   }, { where: { id } })
     .then(data => {
-      res.send(data);
+      res.status(200).send({
+        message: "Info Updated!"
+      })
     })
     .catch(err => {
       res.status(500).send({
