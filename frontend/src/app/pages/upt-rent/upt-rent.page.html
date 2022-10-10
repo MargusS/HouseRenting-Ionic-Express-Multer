@@ -15,12 +15,12 @@
                 <ion-icon name="repeat-outline"></ion-icon>
               </ion-fab-button>
               <ion-fab-list side="end">
-                <ion-fab-button color="warning" (click)="takePhoto(0)">
+                <ion-fab-button color="warning" (click)="takePhoto(0, image.id)">
                   <ion-icon name="camera-outline"></ion-icon>
                 </ion-fab-button>
               </ion-fab-list>
               <ion-fab-list side="bottom">
-                <ion-fab-button color="warning" (click)="pickImage(0)">
+                <ion-fab-button color="warning" (click)="pickImage(0, image.id)">
                   <ion-icon name="folder-open-outline"></ion-icon>
                 </ion-fab-button>
               </ion-fab-list>

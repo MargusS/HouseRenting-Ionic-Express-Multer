@@ -66,14 +66,13 @@ export class NewRentPage implements OnInit {
   }
 
   public async takePhoto() {
-    // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       quality: 100
     });
-    console.log(capturedPhoto);
-    return capturedPhoto;
+    this.images.push(capturedPhoto.webPath);
+    this.imagesLength = this.images.length;
   }
 
   discardImage(image){

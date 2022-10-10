@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { House } from 'src/app/models/house';
 import { HouseService } from 'src/app/service/house.service';
-import { Camera, CameraResultType, CameraSource, GalleryPhoto, Photo } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade } from 'swiper';
 import { IonicSlides } from '@ionic/angular';
 import { ImagesService } from 'src/app/service/images.service';
@@ -86,8 +86,31 @@ export class UptRentPage implements OnInit {
 
   }
 
+public async takePhoto(aux: number, id){
+  if(aux === 0){
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100
+    });
+    this.imgUpdate = capturedPhoto.webPath;
+    let blob = null;
+    const response = await fetch(this.imgUpdate)
+    blob = await response.blob()
+    this.updateImage(id,blob);
+  }
+  if(aux === 1){
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100
+    });
+    this.newImages.push(capturedPhoto.webPath);
+    this.createImage();
+  }
+}
+
   public async pickImage(aux: number, id){
-    // Take a photo
     
     if(aux === 0){
       const capturedPhoto = await Camera.pickImages({
