@@ -10,9 +10,7 @@ Link with test images folder : https://drive.google.com/drive/folders/1z0i9eQvbn
 1. - Clone the repository 
 
 ```
-
 git clone https://github.com/MargusS/HouseRenting.git
-
 ```
 
 2. - Open it in your text editor the frontend folder (Visual Studio Code recommended).
@@ -22,13 +20,11 @@ git clone https://github.com/MargusS/HouseRenting.git
 3. - Open an integraded terminal and execute: 
 
 ```
-
 $ cd backend
 $ npm install
 
 $ cd frontend
 $ npm install
-
 ```
 
 4. - While libraries are dowloading, import - *db.example.sql* - in your your Database Management Software (MySQL Workbench recommended)
@@ -39,21 +35,19 @@ $ npm install
 
 ```
 npm run nodemon
-
 ```
 
 7. - In you frontend integrated terminal execute:
 
 ```
 ionic serve
-
 ```
 
 Enjoy!!!
 
 ## API documentation
 
-https://documenter.getpostman.com/view/23660227/2s83tGoWr9
+https://documenter.getpostman.com/view/23660227/2s83ziPQ2U
 
 
 
